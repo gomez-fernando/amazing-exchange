@@ -31,7 +31,11 @@
         <td>
           <b># {{ a.rank }}</b>
         </td>
-        <td>{{ a.name }}</td>
+        <td>
+          <router-link :to="{ name: 'coin-detail', params: { id: a.id } }">
+            {{ a.name }}
+          </router-link>
+        </td>
         <td>{{ a.priceUsd | dollar }}</td>
         <td>{{ a.marketCapUsd | dollar }}</td>
         <td

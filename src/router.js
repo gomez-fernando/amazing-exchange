@@ -25,15 +25,15 @@ export default new Router({
     },
 
     {
+      path: "/coin/:id",
+      name: "coin-detail",
+      component: CoinDetail
+    },
+
+    {
       path: "*",
       name: "error",
       component: Error
-    }
-
-    {
-      path: '/coin/:id',
-      name: 'coin-detail',
-      component: CoinDetail
     }
   ]
 });

@@ -20,7 +20,7 @@
           <ul>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Ranking</b>
-              <span>#{{ asset.rank }}</span>
+              <span># {{ asset.rank }}</span>
             </li>
             <li class="flex justify-between">
               <b class="text-gray-600 mr-10 uppercase">Precio actual</b>
@@ -71,7 +71,6 @@
 
 <script>
 import api from "@/api";
-
 export default {
   name: "CoinDetail",
 
@@ -96,8 +95,9 @@ export default {
     },
 
     avg() {
-      return Math.abs(
-        ...this.history.map(h => parseFloat(h.priceUsd).toFixed(2))
+      return (
+        this.history.reduce((a, b) => a + parseFloat(b.priceUsd), 0) /
+        this.history.length
       );
     }
   },
@@ -109,21 +109,12 @@ export default {
   methods: {
     getCoin() {
       const id = this.$route.params.id;
-
       Promise.all([api.getAsset(id), api.getAssetHistory(id)]).then(
         ([asset, history]) => {
-          this.asset = asset;
-          this.history = history;
+          (this.asset = asset), (this.history = history);
         }
       );
     }
   }
 };
 </script>
-
-<style scoped>
-td {
-  padding: 10px;
-  text-align: center;
-}
-</style>
