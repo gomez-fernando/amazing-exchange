@@ -1,7 +1,11 @@
 <template>
   <div>
+    <div class="flex justify-center">
+      <bounce-loader :loading="isLoading" :color="'#68d391'" size="100" />
+    </div>
     <!-- v-bind: puede ser remplazado simplemente por : -->
-    <px-assets-table :assets="assets" />
+    <!-- y v-on: puede ser remplazado por @ -->
+    <px-assets-table v-if="!isLoading" :assets="assets" />
   </div>
 </template>
 
@@ -18,12 +22,18 @@ export default {
 
   data() {
     return {
+      isLoading: false,
       assets: []
     };
   },
 
   created() {
-    api.getAssets().then(assets => (this.assets = assets));
+    this.isLoading = true;
+
+    api
+      .getAssets()
+      .then(assets => (this.assets = assets))
+      .finally(() => (this.isLoading = false));
   }
 };
 </script>
