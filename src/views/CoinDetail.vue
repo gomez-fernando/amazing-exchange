@@ -53,7 +53,9 @@
           <button
             @click="toggleConverter"
             class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          >{{ fromUsd ? `USD a ${asset.symbol}` : `${asset.symbol} a USD` }}</button>
+          >
+            {{ fromUsd ? `USD a ${asset.symbol}` : `${asset.symbol} a USD` }}
+          </button>
 
           <div class="flex flex-row my-5">
             <label class="w-full" for="convertValue">
@@ -61,13 +63,15 @@
                 v-model="convertValue"
                 id="convertValue"
                 type="number"
-                :placeholder="`Valor en ${ fromUsd ? `USD` : asset.symbol }`"
+                :placeholder="`Valor en ${fromUsd ? `USD` : asset.symbol}`"
                 class="text-center bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
               />
             </label>
           </div>
 
-          <span class="text-xl">{{ convertResult }} {{ fromUsd ? `${asset.symbol}` : `USD` }}</span>
+          <span class="text-xl"
+            >{{ convertResult }} {{ fromUsd ? `${asset.symbol}` : `USD` }}</span
+          >
         </div>
       </div>
 
@@ -81,7 +85,11 @@
 
       <h3 class="text-xl my-10">Mejores ofertas de cambio</h3>
       <table>
-        <tr v-for="m in markets" :key="`${m.exchangeId}-${m.priceUsd}`" class="border-b">
+        <tr
+          v-for="m in markets"
+          :key="`${m.exchangeId}-${m.priceUsd}`"
+          class="border-b"
+        >
           <td>
             <b>{{ m.exchangeId }}</b>
           </td>
@@ -100,7 +108,8 @@
               :href="m.url"
               class="hover:underline text-green-600"
               target="_blank"
-            >{{ m.url }}</a>
+              >{{ m.url }}</a
+            >
           </td>
         </tr>
       </table>
