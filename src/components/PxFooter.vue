@@ -13,6 +13,9 @@
 </template>
 
 <style>
+footer {
+  max-width: 100%;
+}
 .copyright {
   display: flex;
   justify-content: center;
